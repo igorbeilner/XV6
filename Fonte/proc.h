@@ -1,5 +1,6 @@
 // Segments in proc->gdt.
 #define NSEGS     7
+#define CONSTANT 10000
 
 // Per-CPU state
 struct cpu {
@@ -10,7 +11,7 @@ struct cpu {
   volatile uint started;       // Has the CPU started?
   int ncli;                    // Depth of pushcli nesting.
   int intena;                  // Were interrupts enabled before pushcli?
-  
+
   // Cpu-local storage variables; see below
   struct cpu *cpu;
   struct proc *proc;           // The currently-running process.
@@ -66,6 +67,8 @@ struct proc {
   struct file *ofile[NOFILE];  // Open files
   struct inode *cwd;           // Current directory
   char name[16];               // Process name (debugging)
+  int stride; 								 //valor da passada do processo
+	int step;										 //valor do passo do processo
 };
 
 // Process memory is laid out contiguously, low addresses first:
