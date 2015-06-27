@@ -1,6 +1,5 @@
 // Segments in proc->gdt.
 #define NSEGS     7
-#define CONSTANT 10000
 
 // Per-CPU state
 struct cpu {

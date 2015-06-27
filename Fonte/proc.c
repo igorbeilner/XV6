@@ -261,11 +261,7 @@ void scheduler(void) {
 		// Loop over process table looking for process to run.
 		acquire(&ptable.lock);
 
-		for(m = ptable.proc; m < &ptable.proc[NPROC]; m++) {
-			stride = m->stride;
-			if(m->state == RUNNABLE) break;
-		}
-
+		stride = MAX_STRIDE;
 		p = 0;
 		for(m = ptable.proc; m < &ptable.proc[NPROC]; m++) {
 			if(m->state == RUNNABLE && m->stride < stride) {
@@ -278,8 +274,10 @@ void scheduler(void) {
 		// to release ptable.lock and then reacquire it
 		// before jumping back to us.
 
-		if(!p)
+		if(!p) {
+			release(&ptable.lock);
 			continue;
+		}
 
 		p->stride += p->step;
 		proc = p;
@@ -291,7 +289,6 @@ void scheduler(void) {
 		// Process is done running for now.
 		// It should have changed its p->state before coming back.
 		proc = 0;
-		release(&ptable.lock);
 
 	}
 }
