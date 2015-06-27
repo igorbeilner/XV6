@@ -1,5 +1,4 @@
 1574 acquire
-2455 allocproc
 1953 allocuvm
 3254 alltraps
 7610 ALT
@@ -50,6 +49,7 @@
 8051 consoleread
 8101 consolewrite
 7986 consputc
+0162 CONSTANT
 2343 context
 7382 CONV
 2118 copyout
@@ -74,6 +74,7 @@
 7609 CTL
 7332 DAY
 1982 deallocuvm
+0164 DEF_TICKETS
 0204 DEVSPACE
 4030 devsw
 3926 dinode
@@ -98,7 +99,6 @@
 8457 EXEC
 8469 execcmd
 8653    " 
-2604 exit
 0202 EXTMEM
 5838 fdalloc
 3517 fetchint
@@ -132,16 +132,13 @@
 0723 FL_VIP
 0720 FL_VM
 0707 FL_ZF
-2554 fork
 8639 fork1
-2783 forkret
 3051 freerange
 2010 freevm
 0901 gatedesc
 1626 getcallerpcs
 8584 getcmd
 8756 gettoken
-2531 growproc
 4128 havedisk1
 1644 holding
 7331 HOURS
@@ -225,7 +222,6 @@
 7624 KEY_RT
 7621 KEY_UP
 3065 kfree
-2875 kill
 3030 kinit1
 3038 kinit2
 0151 KSTACKSIZE
@@ -255,6 +251,7 @@
 8463 MAXARGS
 3923 MAXFILE
 0159 MAXOPBLOCKS
+0163 MAX_STRIDE
 6615 memcmp
 6652 memcpy
 6631 memmove
@@ -334,7 +331,6 @@
 7525 picenable
 7532 picinit
 7517 picsetmask
-2423 pinit
 6461 pipe
 8459 PIPE
 6471 pipealloc
@@ -347,7 +343,6 @@
 1666 popcli
 7826 printint
 2353 proc
-2904 procdump
 0974 proghdr
 0838 PTE_A
 0844 PTE_ADDR
@@ -385,8 +380,6 @@
 8506 runcmd
 2350 RUNNING
 6682 safestrcpy
-2753 sched
-2708 scheduler
 7614 SCROLLLOCK
 7329 SECS
 9112 SECTSIZE
@@ -406,7 +399,6 @@
 1837 setupkvm
 7608 SHIFT
 5465 skipelem
-2803 sleep
 1501 spinlock
 0670 STA_A
 0787    " 
@@ -563,19 +555,14 @@
 8218 uartinit
 8273 uartintr
 8251 uartputc
-2502 userinit
 2102 uva2ka
 0217 V2P
 0220 V2P_WO
 7113 VER
-2653 wait
 9151 waitdisk
-2864 wakeup
-2853 wakeup1
 1754 walkpgdir
 4604 write_head
 5302 writei
 4683 write_log
 0569 xchg
 7334 YEAR
-2772 yield

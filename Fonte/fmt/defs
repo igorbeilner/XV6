@@ -11,6 +11,9 @@
 0159 MAXOPBLOCKS 10
 0160 LOGSIZE
 0161 NBUF
+0162 CONSTANT 10000
+0163 MAX_STRIDE 99999
+0164 DEF_TICKETS 300
 0202 EXTMEM 0x100000
 0203 PHYSTOP 0xE000000
 0204 DEVSPACE 0xFE000000
@@ -381,22 +384,6 @@
 2053 copyuvm
 2102 uva2ka
 2118 copyout
-2423 pinit
-2455 allocproc
-2502 userinit
-2531 growproc
-2554 fork
-2604 exit
-2653 wait
-2708 scheduler
-2753 sched
-2772 yield
-2783 forkret
-2803 sleep
-2853 wakeup1
-2864 wakeup
-2875 kill
-2904 procdump
 3030 kinit1
 3038 kinit2
 3051 freerange

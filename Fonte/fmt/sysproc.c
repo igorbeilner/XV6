@@ -10,7 +10,7 @@
 3659 int
 3660 sys_fork(void)
 3661 {
-3662   return fork();
+3662   return fork(0);
 3663 }
 3664 
 3665 int

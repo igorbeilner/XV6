@@ -65,15 +65,15 @@
 2364   struct file *ofile[NOFILE];  // Open files
 2365   struct inode *cwd;           // Current directory
 2366   char name[16];               // Process name (debugging)
-2367 };
-2368 
-2369 // Process memory is laid out contiguously, low addresses first:
-2370 //   text
-2371 //   original data and bss
-2372 //   fixed-size stack
-2373 //   expandable heap
-2374 
-2375 
+2367   int stride; 								 //valor da passada do processo
+2368 	int step;										 //valor do passo do processo
+2369 };
+2370 
+2371 // Process memory is laid out contiguously, low addresses first:
+2372 //   text
+2373 //   original data and bss
+2374 //   fixed-size stack
+2375 //   expandable heap
 2376 
 2377 
 2378 

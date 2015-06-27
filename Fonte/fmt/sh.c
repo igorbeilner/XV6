@@ -191,7 +191,7 @@
 8640 {
 8641   int pid;
 8642 
-8643   pid = fork();
+8643   pid = fork(0);
 8644   if(pid == -1)
 8645     panic("fork");
 8646   return pid;

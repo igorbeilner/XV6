@@ -21,7 +21,7 @@
 8420 
 8421   for(;;){
 8422     printf(1, "init: starting sh\n");
-8423     pid = fork();
+8423     pid = fork(0);
 8424     if(pid < 0){
 8425       printf(1, "init: fork failed\n");
 8426       exit();

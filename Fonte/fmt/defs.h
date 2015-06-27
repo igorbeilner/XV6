@@ -108,7 +108,7 @@
 0357 // proc.c
 0358 struct proc*    copyproc(struct proc*);
 0359 void            exit(void);
-0360 int             fork(void);
+0360 int             fork(int);
 0361 int             growproc(int);
 0362 int             kill(int);
 0363 void            pinit(void);
