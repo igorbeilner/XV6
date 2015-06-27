@@ -254,13 +254,12 @@ void scheduler(void) {
 	int stride;
 	struct proc *p, *m;
 
-	for(;;){
+	while(1) {
 		// Enable interrupts on this processor.
 		sti();
 
 		// Loop over process table looking for process to run.
 		acquire(&ptable.lock);
-
 		stride = MAX_STRIDE;
 		p = 0;
 		for(m = ptable.proc; m < &ptable.proc[NPROC]; m++) {
@@ -289,7 +288,6 @@ void scheduler(void) {
 		// Process is done running for now.
 		// It should have changed its p->state before coming back.
 		proc = 0;
-
 	}
 }
 
