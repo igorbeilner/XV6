@@ -29,7 +29,7 @@ void pinit(void) {
 // If found, change state to EMBRYO and initialize
 // state required to run in the kernel.
 // Otherwise return 0.
-static struct proc* allocproc(void) {
+static struct proc* allocproc(int tickets) {
 	struct proc *p;
 	char *sp;
 
@@ -43,7 +43,8 @@ static struct proc* allocproc(void) {
 found:
 	p->state = EMBRYO;
 	p->stride = 0;
-	p->step = CONSTANT/250;
+	if(!tickets) tickets = DEF_TICKETS;
+	p->step = CONSTANT/tickets;
 	p->pid = nextpid++;
 	release(&ptable.lock);
 
@@ -77,7 +78,7 @@ void userinit(void) {
 	struct proc *p;
 	extern char _binary_initcode_start[], _binary_initcode_size[];
 
-	p = allocproc();
+	p = allocproc(DEF_TICKETS);
 	initproc = p;
 	if((p->pgdir = setupkvm()) == 0)
 		panic("userinit: out of memory?");
@@ -119,12 +120,12 @@ int growproc(int n) {
 // Create a new process copying p as the parent.
 // Sets up stack to return as if from system call.
 // Caller must set state of returned proc to RUNNABLE.
-int fork(void) {
+int fork(int tickets) {
 	int i, pid;
 	struct proc *np;
 
 	// Allocate process.
-	if((np = allocproc()) == 0)
+	if((np = allocproc(tickets)) == 0)
 		return -1;
 
 	// Copy process state from p.
