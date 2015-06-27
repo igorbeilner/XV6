@@ -43,7 +43,7 @@ static struct proc* allocproc(void) {
 found:
 	p->state = EMBRYO;
 	p->stride = 0;
-	p->step = 1;
+	p->step = CONSTANT/250;
 	p->pid = nextpid++;
 	release(&ptable.lock);
 
