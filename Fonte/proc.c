@@ -263,7 +263,7 @@ void scheduler(void) {
 		stride = MAX_STRIDE;
 		p = 0;
 		for(m = ptable.proc; m < &ptable.proc[NPROC]; m++) {
-			if(m->state == RUNNABLE && m->stride < stride) {
+			if((m->state == RUNNABLE) && (m->stride < stride)) {
 				stride = m->stride;
 				p = m;
 			}
@@ -273,21 +273,21 @@ void scheduler(void) {
 		// to release ptable.lock and then reacquire it
 		// before jumping back to us.
 
-		if(!p) {
-			release(&ptable.lock);
-			continue;
+		if(p){
+
+			p->stride += p->step;
+			proc = p;
+			switchuvm(p);
+			p->state = RUNNING;
+			swtch(&cpu->scheduler, proc->context);
+			switchkvm();
+
+			// Process is done running for now.
+			// It should have changed its p->state before coming back.
+			proc = 0;
 		}
 
-		p->stride += p->step;
-		proc = p;
-		switchuvm(p);
-		p->state = RUNNING;
-		swtch(&cpu->scheduler, proc->context);
-		switchkvm();
-
-		// Process is done running for now.
-		// It should have changed its p->state before coming back.
-		proc = 0;
+		release(&ptable.lock);
 	}
 }
 
