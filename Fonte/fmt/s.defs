@@ -1,5 +1,4 @@
 acquire 1574
-allocproc 2455
 allocuvm 1953
 alltraps 3254
 ALT 7610
@@ -48,6 +47,7 @@ consoleintr 8012
 consoleread 8051
 consolewrite 8101
 consputc 7986
+CONSTANT 0162
 context 2343
 CONV 7382
 copyout 2118
@@ -72,6 +72,7 @@ CRTPORT 7951
 CTL 7609
 DAY 7332
 deallocuvm 1982
+DEF_TICKETS 0164
 DEVSPACE 0204
 devsw 4030
 dinode 3926
@@ -95,7 +96,6 @@ ESR 7118
 exec 6310
 EXEC 8457
 execcmd 8469 8653
-exit 2604
 EXTMEM 0202
 fdalloc 5838
 fetchint 3517
@@ -129,16 +129,13 @@ FL_VIF 0722
 FL_VIP 0723
 FL_VM 0720
 FL_ZF 0707
-fork 2554
 fork1 8639
-forkret 2783
 freerange 3051
 freevm 2010
 gatedesc 0901
 getcallerpcs 1626
 getcmd 8584
 gettoken 8756
-growproc 2531
 havedisk1 4128
 holding 1644
 HOURS 7331
@@ -222,7 +219,6 @@ KEY_PGUP 7625
 KEY_RT 7624
 KEY_UP 7621
 kfree 3065
-kill 2875
 kinit1 3030
 kinit2 3038
 KSTACKSIZE 0151
@@ -250,6 +246,7 @@ MAXARG 0158
 MAXARGS 8463
 MAXFILE 3923
 MAXOPBLOCKS 0159
+MAX_STRIDE 0163
 memcmp 6615
 memcpy 6652
 memmove 6631
@@ -328,7 +325,6 @@ PHYSTOP 0203
 picenable 7525
 picinit 7532
 picsetmask 7517
-pinit 2423
 pipe 6461
 PIPE 8459
 pipealloc 6471
@@ -340,7 +336,6 @@ pipewrite 6530
 popcli 1666
 printint 7826
 proc 2353
-procdump 2904
 proghdr 0974
 PTE_A 0838
 PTE_ADDR 0844
@@ -377,8 +372,6 @@ run 3014
 runcmd 8506
 RUNNING 2350
 safestrcpy 6682
-sched 2753
-scheduler 2708
 SCROLLLOCK 7614
 SECS 7329
 SECTSIZE 9112
@@ -398,7 +391,6 @@ SETGATE 0921
 setupkvm 1837
 SHIFT 7608
 skipelem 5465
-sleep 2803
 spinlock 1501
 STA_A 0670 0787
 STA_C 0667 0784
@@ -526,19 +518,14 @@ uartgetc 8263
 uartinit 8218
 uartintr 8273
 uartputc 8251
-userinit 2502
 uva2ka 2102
 V2P 0217
 V2P_WO 0220
 VER 7113
-wait 2653
 waitdisk 9151
-wakeup 2864
-wakeup1 2853
 walkpgdir 1754
 write_head 4604
 writei 5302
 write_log 4683
 xchg 0569
 YEAR 7334
-yield 2772
