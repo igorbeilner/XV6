@@ -43,7 +43,7 @@ static struct proc* allocproc(int tickets) {
 found:
 	p->state = EMBRYO;
 	p->stride = 0;
-	if(!tickets) tickets = DEF_TICKETS;
+	if(tickets <= 0) tickets = DEF_TICKETS;
 	p->step = CONSTANT/tickets;
 	p->pid = nextpid++;
 	release(&ptable.lock);
@@ -217,6 +217,9 @@ int wait(void) {
 				continue;
 			havekids = 1;
 			if(p->state == ZOMBIE){
+
+				cprintf("process: %d | processname: %s\n", p->pid, p->name);
+
 				// Found one.
 				pid = p->pid;
 				kfree(p->kstack);
@@ -267,6 +270,7 @@ void scheduler(void) {
 			if((m->state == RUNNABLE) && (m->stride < stride)) {
 				stride = m->stride;
 				p = m;
+				cprintf("passo: %d, passada: %d\n", m->step, m->stride);
 			}
 		}
 

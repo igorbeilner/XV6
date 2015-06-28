@@ -11,5 +11,5 @@
 #define LOGSIZE      (MAXOPBLOCKS*3)  // max data sectors in on-disk log
 #define NBUF         (MAXOPBLOCKS*3)  // size of disk block cache
 #define CONSTANT 10000
-#define MAX_STRIDE 99999
+#define MAX_STRIDE 99999999
 #define DEF_TICKETS 300

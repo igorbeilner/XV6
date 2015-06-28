@@ -7,10 +7,12 @@
 #include "mmu.h"
 #include "proc.h"
 
-int
-sys_fork(void)
-{
-  return fork(0);
+int sys_fork() {
+  int tickets;
+  if(argint(0, &tickets) < 0)
+    return -1;
+  else
+    return fork(tickets);
 }
 
 int
