@@ -17,7 +17,7 @@ int main() {
 
   for(i=1; i<=MAX_PROCESS; i++) {
 
-    vet_pid[i] = fork(i*50);
+    vet_pid[i] = fork(i);
 
     if (vet_pid[i] == 0){
       teste();

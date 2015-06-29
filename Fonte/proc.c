@@ -270,7 +270,7 @@ void scheduler(void) {
 			if((m->state == RUNNABLE) && (m->stride < stride)) {
 				stride = m->stride;
 				p = m;
-				//cprintf("passo: %d, passada: %d\n", m->step, m->stride);
+				//cprintf("step: %d, stride: %d\n", m->step, m->stride);
 			}
 		}
 
