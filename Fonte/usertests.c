@@ -4,7 +4,7 @@
 #include "user.h"
 
 #define MAX_TESTE 9000
-#define MAX_PROCESS 20
+#define MAX_PROCESS 5
 
 void teste(){
   int i, j;
