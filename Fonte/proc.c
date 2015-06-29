@@ -218,7 +218,7 @@ int wait(void) {
 			havekids = 1;
 			if(p->state == ZOMBIE){
 
-				cprintf("process: %d | processname: %s\n", p->pid, p->name);
+				cprintf("%s |     %d   |    %d    |   %d   |    %d\n", p->name, p->pid, p->step, p->stride, p->stride/p->step);
 
 				// Found one.
 				pid = p->pid;
@@ -270,7 +270,7 @@ void scheduler(void) {
 			if((m->state == RUNNABLE) && (m->stride < stride)) {
 				stride = m->stride;
 				p = m;
-				cprintf("passo: %d, passada: %d\n", m->step, m->stride);
+				//cprintf("passo: %d, passada: %d\n", m->step, m->stride);
 			}
 		}
 

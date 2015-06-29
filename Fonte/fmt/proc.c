@@ -66,7 +66,7 @@
 2465 found:
 2466 	p->state = EMBRYO;
 2467 	p->stride = 0;
-2468 	if(!tickets) tickets = DEF_TICKETS;
+2468 	if(tickets <= 0) tickets = DEF_TICKETS;
 2469 	p->step = CONSTANT/tickets;
 2470 	p->pid = nextpid++;
 2471 	release(&ptable.lock);
@@ -263,34 +263,34 @@
 2662 				continue;
 2663 			havekids = 1;
 2664 			if(p->state == ZOMBIE){
-2665 				// Found one.
-2666 				pid = p->pid;
-2667 				kfree(p->kstack);
-2668 				p->kstack = 0;
-2669 				freevm(p->pgdir);
-2670 				p->state = UNUSED;
-2671 				p->pid = 0;
-2672 				p->parent = 0;
-2673 				p->name[0] = 0;
-2674 				p->killed = 0;
-2675 				release(&ptable.lock);
-2676 				return pid;
-2677 			}
-2678 		}
-2679 
-2680 		// No point waiting if we don't have any children.
-2681 		if(!havekids || proc->killed){
-2682 			release(&ptable.lock);
-2683       		return -1;
-2684     	}
-2685 
-2686 		// Wait for children to exit.  (See wakeup1 call in proc_exit.)
-2687 		sleep(proc, &ptable.lock);  //DOC: wait-sleep
-2688 	}
-2689 }
-2690 
-2691 
-2692 
+2665 
+2666 				cprintf("process: %d | processname: %s\n", p->pid, p->name);
+2667 
+2668 				// Found one.
+2669 				pid = p->pid;
+2670 				kfree(p->kstack);
+2671 				p->kstack = 0;
+2672 				freevm(p->pgdir);
+2673 				p->state = UNUSED;
+2674 				p->pid = 0;
+2675 				p->parent = 0;
+2676 				p->name[0] = 0;
+2677 				p->killed = 0;
+2678 				release(&ptable.lock);
+2679 				return pid;
+2680 			}
+2681 		}
+2682 
+2683 		// No point waiting if we don't have any children.
+2684 		if(!havekids || proc->killed){
+2685 			release(&ptable.lock);
+2686       		return -1;
+2687     	}
+2688 
+2689 		// Wait for children to exit.  (See wakeup1 call in proc_exit.)
+2690 		sleep(proc, &ptable.lock);  //DOC: wait-sleep
+2691 	}
+2692 }
 2693 
 2694 
 2695 
@@ -321,31 +321,31 @@
 2720 			if((m->state == RUNNABLE) && (m->stride < stride)) {
 2721 				stride = m->stride;
 2722 				p = m;
-2723 			}
-2724 		}
-2725 
-2726 		// Switch to chosen process.  It is the process's job
-2727 		// to release ptable.lock and then reacquire it
-2728 		// before jumping back to us.
-2729 
-2730 		if(p){
-2731 
-2732 			p->stride += p->step;
-2733 			proc = p;
-2734 			switchuvm(p);
-2735 			p->state = RUNNING;
-2736 			swtch(&cpu->scheduler, proc->context);
-2737 			switchkvm();
-2738 
-2739 			// Process is done running for now.
-2740 			// It should have changed its p->state before coming back.
-2741 			proc = 0;
-2742 		}
-2743 
-2744 		release(&ptable.lock);
-2745 	}
-2746 }
-2747 
+2723 				cprintf("passo: %d, passada: %d\n", m->step, m->stride);
+2724 			}
+2725 		}
+2726 
+2727 		// Switch to chosen process.  It is the process's job
+2728 		// to release ptable.lock and then reacquire it
+2729 		// before jumping back to us.
+2730 
+2731 		if(p){
+2732 
+2733 			p->stride += p->step;
+2734 			proc = p;
+2735 			switchuvm(p);
+2736 			p->state = RUNNING;
+2737 			swtch(&cpu->scheduler, proc->context);
+2738 			switchkvm();
+2739 
+2740 			// Process is done running for now.
+2741 			// It should have changed its p->state before coming back.
+2742 			proc = 0;
+2743 		}
+2744 
+2745 		release(&ptable.lock);
+2746 	}
+2747 }
 2748 
 2749 
 2750 // Enter scheduler.  Must hold only ptable.lock

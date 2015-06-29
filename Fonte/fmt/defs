@@ -12,7 +12,7 @@
 0160 LOGSIZE
 0161 NBUF
 0162 CONSTANT 10000
-0163 MAX_STRIDE 99999
+0163 MAX_STRIDE 99999999
 0164 DEF_TICKETS 300
 0202 EXTMEM 0x100000
 0203 PHYSTOP 0xE000000
@@ -398,11 +398,10 @@
 3554 argptr
 3571 argstr
 3625 syscall
-3660 sys_fork
-3666 sys_exit
-3673 sys_wait
-3679 sys_kill
-3689 sys_getpid
+3668 sys_exit
+3675 sys_wait
+3681 sys_kill
+3691 sys_getpid
 3701 sys_sbrk
 3715 sys_sleep
 3738 sys_uptime

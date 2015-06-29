@@ -436,15 +436,14 @@ sys_dup 5851
 SYS_dup 3460
 sys_exec 6225
 SYS_exec 3457
-sys_exit 3666
+sys_exit 3668
 SYS_exit 3452
-sys_fork 3660
 SYS_fork 3451
 sys_fstat 5901
 SYS_fstat 3458
-sys_getpid 3689
+sys_getpid 3691
 SYS_getpid 3461
-sys_kill 3679
+sys_kill 3681
 SYS_kill 3456
 sys_link 5913
 SYS_link 3469
@@ -466,7 +465,7 @@ sys_unlink 6001
 SYS_unlink 3468
 sys_uptime 3738
 SYS_uptime 3464
-sys_wait 3673
+sys_wait 3675
 SYS_wait 3453
 sys_write 5877
 SYS_write 3466

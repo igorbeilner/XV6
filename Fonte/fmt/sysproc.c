@@ -7,42 +7,42 @@
 3656 #include "mmu.h"
 3657 #include "proc.h"
 3658 
-3659 int
-3660 sys_fork(void)
-3661 {
-3662   return fork(0);
-3663 }
-3664 
-3665 int
-3666 sys_exit(void)
-3667 {
-3668   exit();
-3669   return 0;  // not reached
-3670 }
-3671 
-3672 int
-3673 sys_wait(void)
-3674 {
-3675   return wait();
-3676 }
-3677 
-3678 int
-3679 sys_kill(void)
-3680 {
-3681   int pid;
-3682 
-3683   if(argint(0, &pid) < 0)
-3684     return -1;
-3685   return kill(pid);
-3686 }
-3687 
-3688 int
-3689 sys_getpid(void)
-3690 {
-3691   return proc->pid;
-3692 }
-3693 
-3694 
+3659 int sys_fork() {
+3660   int tickets;
+3661   if(argint(0, &tickets) < 0)
+3662     return -1;
+3663   else
+3664     return fork(tickets);
+3665 }
+3666 
+3667 int
+3668 sys_exit(void)
+3669 {
+3670   exit();
+3671   return 0;  // not reached
+3672 }
+3673 
+3674 int
+3675 sys_wait(void)
+3676 {
+3677   return wait();
+3678 }
+3679 
+3680 int
+3681 sys_kill(void)
+3682 {
+3683   int pid;
+3684 
+3685   if(argint(0, &pid) < 0)
+3686     return -1;
+3687   return kill(pid);
+3688 }
+3689 
+3690 int
+3691 sys_getpid(void)
+3692 {
+3693   return proc->pid;
+3694 }
 3695 
 3696 
 3697 

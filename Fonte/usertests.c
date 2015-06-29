@@ -3,28 +3,33 @@
 #include "stat.h"
 #include "user.h"
 
-#define N  20
+#define MAX_TESTE 9000
+#define MAX_PROCESS 20
 
-void loop(){
-  int x=0;
-  while(x<999){
-    x++;
-  }
+void teste(){
+  int i, j;
+    for(i=0; i<MAX_TESTE; i++)
+      for(j=0; j<MAX_TESTE; j++);
 }
 
-int main()
-{
-  int n,pid[N];
-  for(n=0;n<N;n++){
-    pid[n] = fork(N*n);
-    if (pid[n] == 0){
-      printf(1,"%d\n", n);
-      loop();
+int main() {
+  int i, vet_pid[MAX_PROCESS];
+
+  for(i=1; i<=MAX_PROCESS; i++) {
+
+    vet_pid[i] = fork(i*50);
+
+    if (vet_pid[i] == 0){
+      teste();
       exit();
     }
+
   }
-  for(n=0;n<N;n++)
+
+  printf(1, "   name   |   pid    |   step   |  stride  |   CPU\n");
+  for(i=0; i<MAX_PROCESS; i++)
     wait();
   exit();
+
   return 0;
 }
