@@ -79,6 +79,7 @@ void userinit(void) {
 	extern char _binary_initcode_start[], _binary_initcode_size[];
 
 	p = allocproc(DEF_TICKETS);
+	cprintf("userinit: pid: %d, name: %s\n", p->pid, p->name);
 	initproc = p;
 	if((p->pgdir = setupkvm()) == 0)
 		panic("userinit: out of memory?");
@@ -135,6 +136,7 @@ int fork(int tickets) {
 		np->state = UNUSED;
 		return -1;
 	}
+	cprintf("fork: pid: %d, name: %s\n", np->pid, np->name);
 	np->sz = proc->sz;
 	np->parent = proc;
 	*np->tf = *proc->tf;
@@ -270,7 +272,7 @@ void scheduler(void) {
 			if((m->state == RUNNABLE) && (m->stride < stride)) {
 				stride = m->stride;
 				p = m;
-				//cprintf("step: %d, stride: %d\n", m->step, m->stride);
+				//cprintf("name: %s, pid: %d, step: %d, stride: %d\n", m->name, m->pid, m->step, m->stride);
 			}
 		}
 
